@@ -7,9 +7,11 @@ def create_app(test_config=None):
   app.config.from_mapping(
     SECRET_KEY='super_secret_key'
   )
-
+  # Decorator (@app.route) extends our hello function without explicitly changing it, turning it into a route and making the content it returns into a response.
   @app.route('/hello')
   def hello():
     return 'hello world'
+
+
 
   return app
