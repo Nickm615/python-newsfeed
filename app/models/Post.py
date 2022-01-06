@@ -6,6 +6,7 @@ from sqlalchemy.orm import relationship
 class Post(Base):
   __tablename__ = 'posts'
   user = relationship('User')
+  comments = relationship('Comment', cascade='all,delete')
   id = Column(Integer, primary_key=True)
   title = Column(String(100), nullable=False)
   post_url = Column(String(100), nullable=False)

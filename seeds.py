@@ -1,4 +1,4 @@
-from app.models import User, Post
+from app.models import User, Post, Comment
 from app.db import Session, Base, engine
 
 # drop and rebuild tables
@@ -6,7 +6,6 @@ Base.metadata.drop_all(engine)
 Base.metadata.create_all(engine)
 # A temporary session connection must be made for any and all CRUD operations.
 db = Session()
-
 # Stages users for insertion into db
 db.add_all([
   User(username='alesmonde0', email='nwestnedge0@cbc.ca', password='password123'),
@@ -24,9 +23,16 @@ db.add_all([
   Post(title='Nunc purus', post_url='http://desdev.cn/enim/blandit/mi.jpg', user_id=3),
   Post(title='Pellentesque eget nunc', post_url='http://google.ca/nam/nulla/integer.aspx', user_id=4)
 ])
-
-
 # Commit command commits changes to database
+db.commit()
+# insert comments
+db.add_all([
+  Comment(comment_text='Nunc rhoncus dui vel sem.', user_id=1, post_id=2),
+  Comment(comment_text='Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.', user_id=1, post_id=3),
+  Comment(comment_text='Aliquam erat volutpat. In congue.', user_id=2, post_id=1),
+  Comment(comment_text='Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.', user_id=2, post_id=3),
+  Comment(comment_text='In hac habitasse platea dictumst.', user_id=3, post_id=3)
+])
 db.commit()
 # Close ends current session
 db.close()
