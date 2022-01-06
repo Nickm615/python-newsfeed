@@ -1,4 +1,4 @@
-# We import thewse functions from sqlalchemy in order to create three important variables: engine (manages db connection), Session (generates temp. connections for performing CRUd operations), and Base (helps map models to SQL tables)
+# We import these functions from sqlalchemy in order to create three important variables: engine (manages db connection), Session (generates temp. connections for performing CRUd operations), and Base (helps map models to SQL tables)
 from os import getenv
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
