@@ -6,6 +6,7 @@ import bcrypt
 salt = bcrypt.gensalt()
 
 class User(Base):
+
   __tablename__ = 'users'
   id = Column(Integer, primary_key=True)
   username = Column(String(50), nullable=False)
@@ -17,6 +18,11 @@ class User(Base):
     assert '@' in email
     # The assert keyword throws an error if the given entry does not contain the given character.
     return email
+  def verify_password(self, password):
+    return bcrypt.checkpw(
+      password.encode('utf-8'),
+      self.password.encode('utf-8')
+  )
 
   @validates('password')
   def validate_password(self, key, password):
